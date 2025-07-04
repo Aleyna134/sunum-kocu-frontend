@@ -86,6 +86,7 @@ const UploadSection = () => {
 
     mediaRecorderRef.current.onstop = () => {
       const blob = new Blob(recordedChunksRef.current, { type: "video/webm" });
+      console.log("📤 Gönderilen video blob:", blob);
       const url = URL.createObjectURL(blob);
       setVideoUrl(url);
 
