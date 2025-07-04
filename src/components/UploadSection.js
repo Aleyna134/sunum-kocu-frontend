@@ -75,6 +75,7 @@ const UploadSection = () => {
 
   const startRecording = async () => {
     const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    console.log("🎥 Kamera ve mikrofon erişimi alındı");
     mediaStreamRef.current = stream;
     mediaRecorderRef.current = new MediaRecorder(stream, { mimeType: "video/webm" });
     recordedChunksRef.current = [];
