@@ -43,6 +43,7 @@ const UploadSection = () => {
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
+      console.log("📄 Seçilen dosya:", e.target.files[0]);
   };
 
   const handleUpload = async () => {
@@ -52,11 +53,13 @@ const UploadSection = () => {
     formData.append("file", file);
 
     try {
-      const response = await fetch("http://localhost:8000/upload/", {
+      const response = await fetch("https://sunum-kocu-backend.onrender.com/upload/", {
         method: "POST",
         body: formData,
       });
+
       const data = await response.json();
+      console.log("Backend yanıtı:", data);
       setSlides(data.image_urls || []);
       setCurrentSlide(0);
       setFillerCounts(null);
@@ -89,7 +92,7 @@ const UploadSection = () => {
       formData.append("video", blob, "presentation.webm");
 
       setLoadingAnalysis(true); // analiz başlıyor
-      fetch("http://localhost:8000/upload_video/", {
+      fetch("https://sunum-kocu-backend.onrender.com/upload_video/", {
         method: "POST",
         body: formData,
       })
